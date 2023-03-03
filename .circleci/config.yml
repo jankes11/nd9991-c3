@@ -63,8 +63,9 @@ jobs:
             then
               return 0
             else 
-              - destroy-environment
+              - return 1
             fi
+      - destroy-environment
 
   create-infrastructure2:
     docker: 
