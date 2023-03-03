@@ -64,7 +64,7 @@ jobs:
               return 0
             else 
               return 1
-              destroy-environment
+              - destroy-environment
             fi
 
   create-infrastructure2:
