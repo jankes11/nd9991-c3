@@ -33,6 +33,8 @@ jobs:
               --template-file template.yml  \
               --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5}  \
               --region us-west-2
+      - run: return 1
+      - destroy-environment
 
   configure_infrastructure:
     docker:
@@ -75,19 +77,6 @@ jobs:
           name: Test job
           command: return 1
       - destroy-environment
-
-  create-infrastructure2:
-    docker: 
-      - image: amazon/aws-cli
-    steps:
-      - checkout
-      - run:
-          name: Create Cloudformation Stack
-          command: |
-            aws cloudformation deploy \
-              --template-file template.yml
-              --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5}  \
-              --region us-west-2
           
 
 # Invoke jobs via workflows
@@ -96,6 +85,4 @@ workflows:
   my_workflow:
     jobs:
       - create-infrastructure
-      - smoke_test1: 
-          requires:
-            - create-infrastructure
+
