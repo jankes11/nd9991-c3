@@ -31,13 +31,13 @@ jobs:
       - add_ssh_keys:
          fingerprints: ["3f:ff:10:56:b5:4a:bd:cd:dc:18:35:a3:69:7a:38:00"]
       - run:
-        name: Install dependecies
-        command: |
-          apk add --update ansible # install the dependecies needed
+          name: Install dependecies
+          command: |
+            apk add --update ansible # install the dependecies needed
       - run:
-        name: Configure server
-        command: |
-          ansible-playbook -i inventory.txt playbook.yml
+          name: Configure server
+          command: |
+            ansible-playbook -i inventory.txt playbook.yml
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
