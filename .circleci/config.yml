@@ -63,8 +63,17 @@ jobs:
             then
               return 0
             else 
-              - return 1
+              return 1
             fi
+      - destroy-environment
+
+  smoke_test1:
+    docker: 
+      - image: alpine:latest
+    steps:
+      - run:
+          name: Test job
+          command: return 1
       - destroy-environment
 
   create-infrastructure2:
@@ -87,6 +96,6 @@ workflows:
   my_workflow:
     jobs:
       - create-infrastructure
-      - smoke_test: 
+      - smoke_test1: 
           requires:
             - create-infrastructure
